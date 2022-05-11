@@ -6,6 +6,7 @@
         "axios": "^0.25.0",
         "bcrypt": "^5.0.1",
         "bootstrap": "^5.1.3",
+        "concurrently": "^7.1.0",
         "dotenv": "^16.0.0",
         "express": "^4.17.3",
         "jsonwebtoken": "^8.5.1",
@@ -14,15 +15,17 @@
         "socket.io": "^4.4.1"
     },
     "engines": {
-        "node": "16.13.1",
+        "node": "16.13.0",
         "npm": "8.1.2"
-      },
+    },
     "scripts": {
-        "dev": "nodemon server.js & npm run watch --prefix client",
+        "client": "npm run watch --prefix client",
+        "dev":"concurrently \"nodemon server.js\" \"npm run client\"",
         "heroku-prebuild": "npm install && npm i --prefix client && npm run build --prefix client",
         "init-db-setup": "psql -f './db.sql'"
     },
     "devDependencies": {
-        "nodemon": "^2.0.15"
+        "nodemon": "^2.0.16",
+        "cra-build-watch": "^3.4.0"
     }
 }
